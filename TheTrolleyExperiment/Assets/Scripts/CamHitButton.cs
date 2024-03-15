@@ -6,6 +6,7 @@ public class CamHitButton : MonoBehaviour
 {
     public Camera cam;
     public LayerMask WhatIsButton;
+    public GameObject lastButton;
 
     private void Update()
     {
@@ -13,11 +14,25 @@ public class CamHitButton : MonoBehaviour
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out hit, 1f, WhatIsButton) && Input.GetMouseButtonDown(0))
+        if (Physics.Raycast(ray, out hit, 1f, WhatIsButton) && Input.GetMouseButtonDown(0))
         {
             Transform objectHit = hit.transform;
-            objectHit.gameObject.SetActive(false);
+            objectHit.GetComponent<ButtonScript>().ButtonPressed();
+            objectHit.GetComponent<Animator>().SetTrigger("lmao");
+            objectHit.gameObject.layer = LayerMask.NameToLayer("Default");
+
         }
+        else if (Physics.Raycast(ray, out hit, 1f, WhatIsButton))
+        {
+            Transform objectHit = hit.transform;
+            lastButton = objectHit.gameObject;
+            objectHit.GetComponent<Outline>().enabled = true;
+        }
+        else if (lastButton != null)
+        {
+            lastButton.GetComponent<Outline>().enabled = false;
+        }
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
     }
 
     
