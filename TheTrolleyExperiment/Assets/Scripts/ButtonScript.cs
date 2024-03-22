@@ -5,11 +5,19 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public float Whichbutton;
+    public GameObject TalkieWalkie;
+    public GameManager gameManager;
     public void ButtonPressed()
     {
+        if (Whichbutton == -1)
+        {
+            gameManager.startRadioWelcome();
+           TalkieWalkie.SetActive(false);
+        }
+
 
         //Kill only one person (1)
-        if(Whichbutton == 0)
+        if (Whichbutton == 0)
         {
             Debug.Log("oneperson has died");
         }
@@ -17,6 +25,7 @@ public class ButtonScript : MonoBehaviour
         //Kill five people (1)
         if (Whichbutton == 1)
         {
+            gameObject.GetComponent<Animator>().SetTrigger("lmao");
             Debug.Log("5 people have died");
         }
 
