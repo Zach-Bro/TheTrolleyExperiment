@@ -19,13 +19,8 @@ public class GameManager : MonoBehaviour
         source.PlayOneShot(PhonePickUp);
         yield return new WaitForSeconds(0.5f);
         source.PlayOneShot(Welcome1);
-        yield return new WaitForSeconds(2f);
-        source.Stop();
-        source.PlayOneShot(BuzzSound);
-        yield return new WaitForSeconds(0.368f);
-        source.clip = Welcome1;
-        source.Play();
-        source.time = 2.8f;
+        yield return new WaitForSeconds(40.323f);
+        source.PlayOneShot(PhoneUnpickUp);
 
 
 

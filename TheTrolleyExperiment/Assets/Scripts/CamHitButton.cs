@@ -18,7 +18,6 @@ public class CamHitButton : MonoBehaviour
         {
             Transform objectHit = hit.transform;
             objectHit.GetComponent<ButtonScript>().ButtonPressed();
-            objectHit.GetComponent<Animator>().SetTrigger("lmao");
             objectHit.gameObject.layer = LayerMask.NameToLayer("Default");
 
         }
